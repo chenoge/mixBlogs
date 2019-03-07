@@ -78,7 +78,7 @@ theme: NexT-Mist
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:chenoge/mixBlogs.git
+  repo: git@github.com:chenoge/endBlogs.git
   branch: master
 
 leancloud_visitors:
