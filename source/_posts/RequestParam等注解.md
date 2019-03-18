@@ -1,5 +1,5 @@
 ---
-title: RequestParam、RequestBody、PathVariable等注解
+title: RequestParam等注解
 date: 2019-03-17 19:44:34
 tags: [RequestParam,RequestBody,PathVariable,RequestAttribute]
 ---
