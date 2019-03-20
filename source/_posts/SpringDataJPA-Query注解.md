@@ -46,7 +46,23 @@ List<Person> testQueryAnnotationParams2(
 long getTotalCount();
 ```
 
-注释：当设置`nativeQuery=true`即可以使用`原生SQL`进行查询
+```java
+ @Query(nativeQuery = true,
+        value = "select * from user where name LIKE CONCAT('%', :file_name, '%')")
+List<User> findByFileName(@Param("file_name") String file_name);
+```
+
+```java
+ @Query(nativeQuery = true, value = "select * from user where name LIKE %:file_name%")
+List<User> findByFileName(@Param("file_name") String file_name);
+```
+
+
+
+注释：
+
+- 当设置`nativeQuery=true`即可以使用`原生SQL`进行查询
+- `like`查询：`LIKE CONCAT('%', :file_name, '%')`
 
 <br/>
 
@@ -65,3 +81,53 @@ void updatePersonEmail(@Param("id") Integer id, @Param("email") String email);
 
 <br/>
 
+#### 五、EntityManager
+
+```java
+public class EpsmSubjectRepositoryImpl {
+    @PersistenceContext
+    EntityManager entityManager;
+
+    public List < EpsmSubject > findEpsmSubjectList(
+        Long catalogId, String subjectName, Long start, Long pageSize) {
+        
+        // 构造sql语句
+        StringBuffer sql = new StringBuffer("SELECT * FROM t_epsm_subject where 1 = 1 ");
+
+        if (catalogId != null) {
+            sql.append(" and catalog_id = :catalogId ");
+        }
+
+        if (StringUtils.isNotBlank(subjectName)) {
+            sql.append(" and subject_name like CONCAT('%', :subjectName, '%')");
+        }
+
+        sql.append(" order by created_time DESC");
+
+        if (start != null && pageSize != null) {
+            sql.append(" limit :start , :pageSize");
+        }
+
+        Query query = entityManager.createNativeQuery(sql.toString(), EpsmSubject.class);
+
+        // 填充查询参数
+
+        if (catalogId != null) {
+            query.setParameter("catalogId", catalogId);
+        }
+
+        if (StringUtils.isNotBlank(subjectName)) {
+            query.setParameter("subjectName", subjectName);
+        }
+
+        if (start != null && pageSize != null) {
+            query.setParameter("start", start);
+            query.setParameter("pageSize", pageSize);
+        }
+
+        return query.getResultList();
+    }
+}
+```
+
+<br/>
