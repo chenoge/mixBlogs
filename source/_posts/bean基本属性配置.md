@@ -34,20 +34,33 @@ tags: [spring,bean]
 #### `<bean>`标签
 
 ```xml
-<bean id="logDao" name="logDaoName" class="com.baobaotao.anno.LogDao" />
+<!-- 空参构造创建 -->
+<bean id="logDao" name="logDaoName" class="com.sjtu.bean.LogDao" />
 
-<bean id="userDao" class="com.baobaotao.anno.UserDao" />
 
-<bean class="com.baobaotao.anno.LogonService">
-    <constructor-arg ref="logDao"></constructor-arg>
-    <constructor-arg ref="userDao"></constructor-arg>
+<bean id="dataSource" class="com.sjtu.bean.dataSource">
+    <!-- 值类型注入：为dataSource对象中名为user的属性注入root作为值 -->
+    <property name="user" value="root"></property>
 </bean>
 
-<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-    <property name="user" value="root"></property>
-    <property name="password" value="123"></property>
-    <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>
+
+<bean class="com.sjtu.bean..LogonService">
+    <!-- 引用类型注入：为logDao属性注入logDao对象 -->
+    <property name="logDao" ref="logDao"></property>
+</bean>
+
+
+ <!-- 准备带有参数的构造 -->
+<bean name="user" class="com.sjtu.bean.User">
+    <!-- name属性：构造函数参数名 -->
+    <!-- index属性：构造函数参数索引  -->
+    <!-- type属性：构造函数参数类型 -->
+    <!-- 上述三个属性不必全部出现，根据情况选择即可 -->
+    <constructor-arg name="name"
+                     value="Jerry"
+                     index="0"
+                     type="java.lang.String"></constructor-arg>
+    <constructor-arg name="car" ref="car"></constructor-arg>
 </bean>
 ```
 
@@ -83,7 +96,16 @@ tags: [spring,bean]
 
 #### 分层次
 
-程序严格来讲分为四个层次：`显示层（VO类）、控制层（Controller类）、业务层（Service类）、数据层（表：Entity类、CURD：DAO类）` 
+程序严格来讲分为四个层次：
+
+- `显示层：VO类`
+- `控制层：Controller类`
+
+- `业务层：Service类`
+
+- `数据层：`
+  - `表：Entity类 || PO类`
+  - `CURD：DAO类）` 
 
 <br/>
 
