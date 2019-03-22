@@ -26,6 +26,8 @@ Class-Path:  commons-beanutils.jar commons-collections.jar commons-digester.jar
 
 <br/>
 
+
+
 #### 一般属性
 
 1. `Manifest-Version` 
@@ -42,6 +44,8 @@ Class-Path:  commons-beanutils.jar commons-collections.jar commons-digester.jar
 
 <br/>
 
+
+
 #### 应用程序相关属性
 
 1. `Main-Class` 
@@ -49,3 +53,4 @@ Class-Path:  commons-beanutils.jar commons-collections.jar commons-digester.jar
    定义`jar文件`的入口类，该类必须是一个可执行的类，一旦定义了该属性即可通过` java -jar x.jar`来运行该`jar文件`。
 
 <br/>
+

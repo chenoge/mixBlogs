@@ -135,6 +135,8 @@ public class AnnotationUse {
 
 <br/>
 
+
+
 ##### `1、@Target`
 
 `@Target`说明了Annotation所修饰的对象范围（**被描述的注解可以用在什么地方**）
@@ -154,6 +156,8 @@ public class AnnotationUse {
 
 <br/>
 
+
+
 ##### `2、@Retention`
 
 `@Retention`定义了该Annotation被保留的时间长短。
@@ -172,6 +176,8 @@ public class AnnotationUse {
 
 <br/>
 
+
+
 ##### `2.2 Java API`中是这样定义的`@Deprecated`的
 
 ```java
@@ -181,6 +187,8 @@ public @interface Deprecated
 ```
 
 <br/>
+
+
 
 ##### `2.3 Java API中`是这样定义的`@Override`的
 
@@ -194,6 +202,8 @@ public @interface Override
 
 <br/>
 
+
+
 ##### `2.4 Java API`中是这样定义的`@SuppressWarnings`的
 
 ```
@@ -205,6 +215,8 @@ public @interface SuppressWarnings
 `@SuppressWarnings`也是给`javac`看的
 
 <br/>
+
+
 
 ##### `3、@Documented`
 
@@ -224,6 +236,8 @@ public @interface Column {
 
 <br/>
 
+
+
 ##### `4、@Inherited`
 
 `@Inherited` 元注解是一个标记注解，`@Inherited`阐述了某个被标注的类型是被继承的。如果一个使用了`@Inherited`修饰的annotation类型被用于一个class，则这个annotation将**被用于该class的子类**。
@@ -238,7 +252,7 @@ public @interface Column {
 
 ##### **1、添加属性**
 
-语法：`类型 属性名() default 默认值;` || `类型 属性名();` 
+语法：`类型 属性名() default 默认值;` || `类型 属性名();` 
 
 ```java
 import java.lang.annotation.ElementType;
@@ -259,6 +273,8 @@ public @interface MyAnnotation {
 
 <br/>
 
+
+
 ##### **2、应用属性**
 
 ```java
@@ -274,6 +290,8 @@ public class MyAnnotationTest {
 ```
 
 <br/>
+
+
 
 ##### **3、value属性**
 

@@ -18,6 +18,8 @@ tags: [Elasticsearch,ES]
 
 <br/>
 
+
+
 #### 请求格式
 
 一个`Elasticsearch`请求和任何`HTTP`请求一样由若干相同的部件组成：
@@ -52,6 +54,8 @@ curl -X GET 'http://localhost:9200/_count?pretty' -d '
 <!--more-->
 
 <br/>
+
+
 
 #### 搜索格式
 

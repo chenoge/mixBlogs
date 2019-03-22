@@ -20,11 +20,15 @@ tags: [java,ClassLoader,类加载器]
 
 <br/>
 
+
+
 ##### 根类加载器 （bootstrap class loader）：
 
-它用来加载 Java 的核心库(`jre/lib/rt.jar`)，是用原生`C++`代码来实现的，并不继承自`java.lang.ClassLoader`。**没有父加载器** 
+它用来加载 Java 的核心库(`jre/lib/rt.jar`)，是用原生`C++`代码来实现的，并不继承自`java.lang.ClassLoader`。**没有父加载器** 
 
 <br/>
+
+
 
 ##### 扩展类加载器（extensions class loader）：
 
@@ -34,6 +38,8 @@ tags: [java,ClassLoader,类加载器]
 
 <br/>
 
+
+
 ##### 系统类加载器（system class loader）：
 
 它根据 Java 应用的类路径（`CLASSPATH`）来加载 Java 类。一般来说，Java 应用的类都是由它来完成加载的。可以通过 `ClassLoader.getSystemClassLoader()`来获取它。**父加载器为扩展类加载器 ** 
@@ -42,11 +48,15 @@ tags: [java,ClassLoader,类加载器]
 
 <br/>
 
+
+
 ##### 自定义类加载器（custom class loader）：
 
 除了系统提供的类加载器以外，开发人员可以通过继承 `java.lang.ClassLoader`类的方式实现自己的类加载器，以满足一些特殊的需求。
 
 <br/>
+
+
 
 ### 类加载的父委托机制
 

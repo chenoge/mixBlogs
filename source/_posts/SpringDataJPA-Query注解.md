@@ -8,6 +8,8 @@ tags: [Query,Modifying,Transactional]
 
 <br/>
 
+
+
 ##### 一、索引参数
 
 索引参数：索引值从1开始，查询中`?X`个数需要与方法定义的参数个数相一致，并且顺序也要一致。
@@ -20,6 +22,8 @@ List<Person> testQueryAnnotationParams1(String lastName, String email);
 注释：上面代码中的`?1 、?2`表示参数的占位符，需要和方法中所传递的参数顺序一致。`X`是从`1`开始。
 
 <br/>
+
+
 
 ##### 二、命名参数
 
@@ -36,6 +40,8 @@ List<Person> testQueryAnnotationParams2(
 注释：`:lastName` 、`:email `表示为参数命名，方法中所传递的参数使用`@Param`注解标识命名参数。这种方式不用管参数的顺序。
 
 <br/>
+
+
 
 <!--more-->
 
@@ -66,6 +72,8 @@ List<User> findByFileName(@Param("file_name") String file_name);
 
 <br/>
 
+
+
 ##### 四、`@Modifying`注解
 
 1. 在`@Query`注解中编写`JPQL`实现`DELETE`和`UPDATE`操作的时候必须加上`@modifying`注解，以通知`Spring Data `这是一个`DELETE`或`UPDATE`操作。
@@ -80,6 +88,8 @@ void updatePersonEmail(@Param("id") Integer id, @Param("email") String email);
 ```
 
 <br/>
+
+
 
 #### 五、EntityManager
 
