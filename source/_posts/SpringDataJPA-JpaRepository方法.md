@@ -7,7 +7,7 @@ tags: [JPA,Spring,Repository]
 ##### 解析方法名创建查询
 
 ```
-find + 全局修饰 + By + 实体的属性名称 + 限定词 + 连接词 
+find + 全局修饰 + By + 实体的属性名称 + 限定词 + 连接词
 	 + …(其它实体属性) + OrderBy + 排序属性 + 排序方向
 ```
 
@@ -15,11 +15,11 @@ find + 全局修饰 + By + 实体的属性名称 + 限定词 + 连接词
 // 分页查询出符合姓名的记录,同理Sort也可以直接加上
 public List<User> findByName(String name, Pageable pageable);
 ```
+<!--more-->
+
 <br/>
 
 
-
-<!--more-->
 
 ```
 全局修饰： Distinct， Top， First

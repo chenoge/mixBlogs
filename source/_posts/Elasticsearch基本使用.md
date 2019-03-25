@@ -1,8 +1,14 @@
 ---
-title: Elasticsearch基本使用
+title: Elasticsearch使用
 date: 2019-03-11 18:44:39
 tags: [Elasticsearch,ES]
 ---
+
+[文档](https://www.elastic.co/guide/cn/elasticsearch/guide/current/intro.html) 
+
+<br/>
+
+
 
 #### 面向文档
 

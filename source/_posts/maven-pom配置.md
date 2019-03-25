@@ -8,6 +8,8 @@ tags: [maven,pom]
 
 <br/>
 
+
+
 #### maven的协作相关属性
 
 一个`pom.xml`的定义必须包含`modelVersion`、`groupId`、`artifactId`和`version`这四个元素，当然这其中的元素也是可以从它的父项目中继承的。使用groupdId:artifactId:version`的形式来唯一确定一个项目。
@@ -51,6 +53,10 @@ tags: [maven,pom]
 </project>
 ```
 
+<br/>
+
+
+
 #### 引入依赖
 
 ```xml
@@ -63,14 +69,27 @@ tags: [maven,pom]
             <artifactId>trade-test</artifactId>  
             <version>1.0.0-SNAPSHOT</version>  
   
-            <!-- maven认为，程序对外部的依赖会随着程序的所处阶段和应用场景而变化，所以maven中的依赖关系有作用域(scope)的限制。 -->  
-            <!--scope包含如下的取值：compile（编译范围）、provided（已提供范围）、runtime（运行时范围）、test（测试范围）、system（系统范围） -->  
+            <!-- 
+				maven认为，程序对外部的依赖会随着程序的所处阶段和应用场景而变化
+				所以maven中的依赖关系有作用域(scope)的限制。 
+			-->  
+            
+            <!--
+				scope包含如下的取值：compile（编译范围）、provided（已提供范围）
+				runtime（运行时范围）、test（测试范围）、system（系统范围） 
+			-->  
             <scope>test</scope>  
   
-            <!-- 设置指依赖是否可选，默认为false,即子项目默认都继承:为true,则子项目必需显示的引入，与dependencyManagement里定义的依赖类似  -->  
+            <!-- 
+				设置指依赖是否可选，默认为false,即子项目默认都继承:为true
+				则子项目必需显示的引入，与dependencyManagement里定义的依赖类似  
+			-->
             <optional>false</optional>  
   
-            <!-- 屏蔽依赖关系。 比如项目中使用的libA依赖某个库的1.0版，libB依赖某个库的2.0版，现在想统一使用2.0版，就应该屏蔽掉对1.0版的依赖 -->
+            <!-- 
+				屏蔽依赖关系。 比如项目中使用的libA依赖某个库的1.0版，
+				libB依赖某个库的2.0版，现在想统一使用2.0版，就应该屏蔽掉对1.0版的依赖 
+			-->
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -83,16 +102,20 @@ tags: [maven,pom]
     </dependencies>
 ```
 
+<br/>
+
+
+
 #### 定义常量
 
 ```xml
-    <!-- 为pom定义一些常量，在pom中的其它地方可以直接引用 使用方式 如下 ：${file.encoding} -->  
-    <properties>  
-        <file.encoding>UTF-8</file.encoding>  
-        <java.source.version>1.5</java.source.version>  
-        <java.target.version>1.5</java.target.version>  
-    </properties>
+<!-- 为pom定义一些常量，在pom中的其它地方可以直接引用 使用方式 如下 ：${file.encoding} -->  
+<properties>
+    <file.encoding>UTF-8</file.encoding>
+    <java.source.version>1.5</java.source.version>
+    <java.target.version>1.5</java.target.version>
+</properties>
 ```
 
-
+<br/>
 

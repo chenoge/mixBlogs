@@ -1,5 +1,5 @@
 ---
-title: java基本知识
+title: java知识
 date: 2019-03-07 19:08:54
 tags: [java]
 ---

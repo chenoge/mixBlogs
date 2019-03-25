@@ -1,7 +1,7 @@
 ---
-title: bean基本属性配置
+title: beans标签与属性
 date: 2019-03-19 18:25:09
-tags: [spring,bean]
+tags: [spring,beans]
 ---
 ####` <beans>`标签
 

@@ -1,7 +1,7 @@
 ---
-title: java-生成jar包
+title: jar包
 date: 2019-03-15 11:10:54
-tags: [java,jar]
+tags: [jar]
 ---
 
 ### 一、制作只含有字节码文件的jar包

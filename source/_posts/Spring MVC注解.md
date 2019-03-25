@@ -1,7 +1,7 @@
 ---
-title: RequestParam等注解
+title: Spring MVC注解
 date: 2019-03-17 19:44:34
-tags: [RequestParam,RequestBody,PathVariable,RequestAttribute]
+tags: [Spring,MVC]
 ---
 
 #### 注解类型
@@ -16,9 +16,9 @@ tags: [RequestParam,RequestBody,PathVariable,RequestAttribute]
 3. 处理`request body`部分的注解：`@RequestParam`、` @RequestBody` 
 4. 处理`attribute`类型是注解： `@SessionAttributes`、 `@ModelAttribute` 
 
-<!--more-->
-
 <br/>
+
+<!--more-->
 
 
 
@@ -29,7 +29,6 @@ tags: [RequestParam,RequestBody,PathVariable,RequestAttribute]
 ```java
 @RequestMapping("/owners/{ownerId}")
 public class RelativePathUriTemplateController {
-
     // @RequestMapping("/pets/{petId}")
     @RequestMapping(value = "/pets/{petId}", method = RequestMethod.POST)
     public void findPet(@PathVariable String ownerId, @PathVariable String petId) {
@@ -38,9 +37,7 @@ public class RelativePathUriTemplateController {
 }
 ```
 
-注：
-
-若方法参数名称和需要绑定的`uri template中`变量名称不一致，需要在`@PathVariable("name")`指定`uri template`中的名称。
+注：若方法参数名称和需要绑定的`uri template中`变量名称不一致，需要在`@PathVariable("name")`指定`uri template`中的名称。
 
 ```java
 @PathVariable("ownerId") String owner_id
@@ -116,9 +113,7 @@ public class EditPetForm {
 }
 ```
 
-注：
-
-可以不使用`@RequestParam`，直接接收。此时要求`controller方法`中的**参数名称**要一致
+注：可以不使用`@RequestParam`，直接接收。此时要求`controller方法`中的**参数名称**要一致
 
 ```java
 @RequestMapping("/pets")
@@ -141,7 +136,7 @@ public class EditPetForm {
 - `application/json` 
 - `application/xml` 
 
-通过使用`HandlerAdapter`配置的`HttpMessageConverters`来解析`post data body`，然后绑定到相应的`bean`上的。
+使用`HandlerAdapter`配置的`HttpMessageConverters`来解析`post data body`，然后绑定到`bean`上
 
 **字符串解析：** 
 
