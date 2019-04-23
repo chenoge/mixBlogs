@@ -4,27 +4,12 @@ date: 2019-04-10 22:06:08
 tags: [for,Collection,Iterator]
 ---
 
-#### 遍历数组的传统方式
-
-```java
-int[] integers = { 1， 2， 3， 4 };
-for (int j = 0; j < integers.length; j++) {
-    int i = integers[j];
-    System.out.println(i);
-}
-```
-
-<br/>
-
-
-
-#### 遍历Collection对象的传统方式
+#### Collection对象-遍历器
 
 ```java
 /* 建立一个Collection */
 String[] strings = { "A"， "B"， "C"， "D" };
 Collection stringList = java.util.Arrays.asList(strings);
-
 for (Iterator itr = stringList.iterator(); itr.hasNext();) {
     Object str = itr.next();
     System.out.println(str);
@@ -35,22 +20,16 @@ for (Iterator itr = stringList.iterator(); itr.hasNext();) {
 
 
 
-#### for(:)循环-foreach
-
-```java
-int[] integers = { 1， 2， 3， 4 };
-for (int i: integers) {
-    System.out.println(i);
-}
-```
+#### for(:)循环
 
 ```java
 String[] strings = { "A"， "B"， "C"， "D" };
 Collection list = java.util.Arrays.asList(strings);
-for (Object str: list) {
-    System.out.println(str);
-}
+for (String str: list) { System.out.println(str);}
+// for (String str: strings) { System.out.println(str);}
 ```
+
+<!--more-->
 
 <br/>
 
@@ -73,6 +52,46 @@ for (Integer value: map.values()) {
 ```
 
 <br/>
+
+
+
+#### 数组转`Set`或`List`
+
+```java
+// CollectionUtils.addAll()
+import org.apache.commons.collections.CollectionUtils;   
+String[] strArray = {"aaa", "bbb", "ccc"};
+List strList = new ArrayList();
+Set strSet = new HashSet();
+CollectionUtils.addAll(strList, strArray);  
+CollectionUtils.addAll(strSet, strArray);
+
+// Arrays.asList()
+import java.util.Arrays;
+String[] strArray = {"aaa", "bbb", "ccc"};
+List strList = Arrays.asList(strArray);
+```
+
+<br/>
+
+
+
+#### Set和List转数组
+
+```java
+// Collection的toArray()方法
+// Object[] toArray();
+String[] strArray = {"aaa", "bbb", "ccc"};
+List strList = Arrays.asList(strArray);
+
+Object[] obj = strList.toArray();
+for (int i = 0; i < obj.length; i++) {
+    String str = (String) obj[i];
+    System.out.println(str);
+}
+```
+
+
 
 
 
