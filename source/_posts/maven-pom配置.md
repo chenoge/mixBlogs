@@ -119,3 +119,30 @@ tags: [maven,pom]
 
 <br/>
 
+
+
+#### 多环境配置
+
+```xml
+<profiles>
+    <!-- 开发环境 -->  
+    <profile>
+        <id>dev</id>
+        <properties>
+            <conf.dir>profile/dev/</conf.dir>
+        </properties>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+    </profile>
+    <!-- 生成环境 -->  
+    <profile>
+        <id>prod</id>
+        <properties>
+            <conf.dir>profile/prod/</conf.dir>
+        </properties>
+    </profile>
+</profiles>
+```
+
+<br/>
