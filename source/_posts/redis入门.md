@@ -6,16 +6,12 @@ tags: [redis]
 
 #### Redis 配置
 
-服务端：`redis-server`
-
-客户端：`redis-cli`
-
-通过 `CONFIG `命令查看或设置配置项
+通过 `CONFIG `命令**查看**或**设置**配置项
 
 ```shell
 # 查看：CONFIG GET CONFIG_SETTING_NAME
 CONFIG GET loglevel
-CONFIG GET * # 使用 * 号获取所有配置项
+CONFIG GET *  # 使用 * 号获取所有配置项
 ```
 
 ```shell
@@ -33,29 +29,38 @@ CONFIG SET loglevel "notice"
 
 ```shell
 # String（字符串）
+# string 是 redis 最基本的类型，一个 key 对应一个 value，一个键最大能存储512MB
 # string 类型是二进制安全的，可以包含jpg图片或者序列化的对象
-# 一个键最大能存储512MB
-SET name "runoob" # SET key value
-GET name # GET key
+SET name "runoob"
+GET name
+DEL runoob
 
 # Hash（哈希）
+# Redis hash 是一个键值(key=>value)对集合
+# Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象
 HMSET myhash field1 "Hello" field2 "World"
 HGET myhash field1
 HGET myhash field2
+DEL myhash
 
 # List（列表）
+# Redis 列表是简单的字符串列表，按照插入顺序排序
+# 可以添加一个元素到列表的头部（左边）或者尾部（右边）
 lpush runoob redis
 lpush runoob mongodb
 lpush runoob rabitmq
 lrange runoob 0 10
+DEL runoob
 
 # Set（集合）
+# Redis的Set是string类型的无序集合
 # 成功返回1，如果元素已经在集合中返回 0
 sadd runoob redis
 sadd runoob mongodb
 sadd runoob rabitmq
 sadd runoob rabitmq # 重复
 smembers runoob
+DEL runoob
 ```
 
 <br/>
