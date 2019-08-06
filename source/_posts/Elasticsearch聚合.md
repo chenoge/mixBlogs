@@ -8,8 +8,6 @@ Elasticsearch 有一个功能叫聚合（aggregations），允许我们基于数
 
 <!--more-->
 
-
-
 - 普通嵌套
 
 ```javascript
@@ -129,7 +127,7 @@ GET ds-epsm-all/post/_search
 - `top_hits` 
 
 ```javascript
-GET ds - epsm - all / post / _search 
+GET ds-epsm-all/post/_search 
 {
     "aggs": {
         "similar": {
@@ -164,6 +162,85 @@ GET /cars/transactions/_search
          }
       }
    }
+}
+```
+
+
+
+- stats 统计
+
+```javascript
+{
+    "aggs" : {
+        "grades_stats" : { "stats" : { "field" : "grade" } }
+    }
+}
+```
+
+请求后会直接显示多种聚合结果：
+
+```javascript
+{
+    "aggregations": {
+        "grades_stats": {
+            "count": 6,
+            "min": 60,
+            "max": 98,
+            "avg": 78.5,
+            "sum": 471
+        }
+    }
+}
+```
+
+
+
+-  extend stats 扩展统计
+
+```javascript
+{
+    "aggs" : {
+        "grades_stats" : { "extended_stats" : { "field" : "grade" } }
+    }
+}
+```
+
+在统计的基础上还增加了多种复杂的统计信息：
+
+```javascript
+{
+    "aggregations": {
+        "grade_stats": {
+           "count": 9,
+           "min": 72,
+           "max": 99,
+           "avg": 86,
+           "sum": 774,
+           "sum_of_squares": 67028,
+           "variance": 51.55555555555556,
+           "std_deviation": 7.180219742846005,
+           "std_deviation_bounds": {
+            "upper": 100.36043948569201,
+            "lower": 71.63956051430799
+           }
+        }
+    }
+}
+```
+
+
+
+- 不重复的字段，cardinality 求唯一值
+
+```javascript
+{
+    "aggs" : {
+        "author_count" : {
+            "cardinality" : {
+                "field" : "author"
+            }
+        }
+    }
 }
 ```
 
