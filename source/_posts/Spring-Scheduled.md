@@ -101,7 +101,8 @@ public class ScheduledTasks {
 // 第二个定时任务开始 : 2019-08-11 15:27:37
 // 线程 : pool-1-thread-1
 
-// 默认单线程，任务都运行在同一个线程内，第二个任务的执行时机受第一个任务的影响
+// 默认单线程，所有任务（不同任务类的任务）都运行在同一个线程内
+// 任务的执行时机受（其本身或其他任务）执行时间的限制
 ```
 
 <br/>
@@ -149,7 +150,7 @@ public class ScheduledTasks {
 // 第二个定时任务开始 : 2019-08-11 15:36:43
 // 线程 : SimpleAsyncTaskExecutor-21
 
-// 开启了多线程，第一个任务的执行时机也不受其本身执行时间的限制，需要注意数据幂等性。
+// 开启了多线程，任务的执行时机不受（其本身或其他任务）执行时间的限制，需要注意数据幂等性。
 ```
 
 <br/>
@@ -174,9 +175,51 @@ public class ScheduleConfig implements SchedulingConfigurer {
 
    @Bean(destroyMethod = "shutdown")
    public Executor taskExecutor() {
-       return Executors.newScheduledThreadPool(8, threadFactory);
+       return Executors.newScheduledThreadPool(50, threadFactory);
    }
 }
-
-// 单任务自己是串行，任务与任务之间是并行
 ```
+
+```java
+@Component
+@EnableAsync
+public class ScheduledTasks {
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+    
+    @Scheduled(fixedDelay = 1000)
+    public void first() throws InterruptedException {
+        System.out.println("第一个定时任务开始: " + sdf.format(new Date()));
+        System.out.println( "线程: " + Thread.currentThread().getName());
+        System.out.println();
+        // 模拟第一个任务执行的时间
+        Thread.sleep(1000 * 2); 
+    }
+    
+    @Async
+    @Scheduled(fixedDelay = 1000)
+    public void second() {
+        System.out.println("第二个定时任务开始: " + sdf.format(new Date()));
+        System.out.println( "线程: " + Thread.currentThread().getName());
+        System.out.println();
+    }
+}
+
+// 第一个定时任务开始: 2019-08-11 18:35:24
+// 线程: pool-2-thread-12
+
+// 第二个定时任务开始: 2019-08-11 18:35:24
+// 线程: pool-2-thread-11
+    
+// 第二个定时任务开始: 2019-08-11 18:35:25
+// 线程: pool-2-thread-11
+
+// 第二个定时任务开始: 2019-08-11 18:35:26
+// 线程: pool-2-thread-4
+
+// 第一个定时任务开始: 2019-08-11 18:35:27
+// 线程: pool-2-thread-15
+
+// 不加@Async，任务的执行时机只受其本身执行时间的限制
+// 加@Async，任务的执行时机不受（其本身或其他任务）执行时间的限制
+```
+
