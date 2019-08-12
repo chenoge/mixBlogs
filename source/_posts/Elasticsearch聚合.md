@@ -157,8 +157,21 @@ GET /cars/transactions/_search
       "sales": {
          "date_histogram": {
             "field": "sold",
-            "interval": "month", 
-            "format": "yyyy-MM-dd" 
+            "interval": "month",
+            "format": "yyyy-MM-dd",
+            // 设置时区
+            "time_zone":"+08:00",
+            // 偏移时间区间，默认是区间（00:00 - 24:00）
+            "offset":"+6h",
+            // 配置缺省默认值
+            "missing":"2000-01-01", 
+            // 根据最少文档数，进行桶过滤
+            "min_doc_count": 0, 
+            // 范围扩展
+            "extended_bounds": { 
+              "min": 1262304000000,
+              "max": 1554076800000
+            }
          }
       }
    }
@@ -176,8 +189,6 @@ GET /cars/transactions/_search
     }
 }
 ```
-
-请求后会直接显示多种聚合结果：
 
 ```javascript
 {
@@ -204,8 +215,6 @@ GET /cars/transactions/_search
     }
 }
 ```
-
-在统计的基础上还增加了多种复杂的统计信息：
 
 ```javascript
 {
