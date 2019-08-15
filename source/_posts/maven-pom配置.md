@@ -12,7 +12,7 @@ tags: [maven,pom]
 
 #### maven的协作相关属性
 
-一个`pom.xml`的定义必须包含`modelVersion`、`groupId`、`artifactId`和`version`这四个元素，当然这其中的元素也是可以从它的父项目中继承的。使用groupdId:artifactId:version`的形式来唯一确定一个项目。
+一个`pom.xml`的定义必须包含`modelVersion`、`groupId`、`artifactId`和`version`这四个元素，当然这其中的元素也是可以从它的父项目中继承的。使用`groupdId:artifactId:version`的形式来唯一确定一个项目。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,28 +21,16 @@ tags: [maven,pom]
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  
                       http://maven.apache.org/maven-v4_0_0.xsd">
     
+    <!-- 描述这个POM文件是遵从哪个版本的项目描述符 -->
     <modelVersion>4.0.0</modelVersion>
     
-    <!-- 
-        含义：组织标识，定义了项目属于哪个组
-        用途：此名称则是本地仓库中的路径
-        例如：otowa.user.dao，在M2_REPO目录下，将是: otowa/user/dao目录
-        命名规范:项目名称，模块，子模块
-    -->
+    <!-- 组织标识，定义了项目属于哪个组-->
     <groupId>otowa.user.dao</groupId>
     
-    <!-- 
-        含义：项目名称，定义当前Maven项目在组中唯一的ID
-        用途：例如：user-dao，在M2_REPO目录下，将是：otowa/user/dao/user-dao目录
-        命名规范:唯一就好
-    -->
+    <!-- 项目名称，定义当前Maven项目在组中唯一的ID-->
     <artifactId>user-dao</artifactId>
     
-    <!-- 
-        含义：项目当前的版本号
-        用途：例如：0.0.1-SNAPSHOT
-		在M2_REPO目录下，将是：otowa/user/dao/user-dao/0.0.1-SNAPSHOT目录
-    -->
+    <!-- 项目当前的版本号-->
     <version>0.0.1-SNAPSHOT</version>
     
     <!-- 打包的格式，可以为：pom , jar , maven-plugin , ejb , war , ear , rar , par -->
@@ -135,7 +123,7 @@ tags: [maven,pom]
             <activeByDefault>true</activeByDefault>
         </activation>
     </profile>
-    <!-- 生成环境 -->  
+    <!-- 生成环境 -->
     <profile>
         <id>prod</id>
         <properties>
