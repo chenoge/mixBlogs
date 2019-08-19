@@ -1,10 +1,10 @@
 ---
-title: chkconfig
+title: linux-chkconfig
 date: 2019-05-27 22:25:17
 tags: [linux,chkconfig]
 ---
 
-chkconfig命令主要用来更新（启动或停止）和查询系统服务的运行级信息，谨记chkconfig不是立即自动禁止或激活一个服务，它只是简单的改变了符号（ln）连接。
+`chkconfig`命令主要用来更新（启动或停止）和查询系统服务的运行级信息，谨记`chkconfig`不是立即自动禁止或激活一个服务，它只是简单的改变了符号（ln）连接。
 
 ```
 chkconfig [--add][--del][--list][系统服务]

@@ -7,21 +7,21 @@ tags: [linux,chkconfig]
 ##### 创建脚本测试
 
 ```shell
-[root@anuo ~]# vim anuo.sh  --创建个脚本
+[root@anuo ~]# vim anuo.sh    --创建个脚本
 ```
 
 ```shell
 # !/bin/bash
-# chkconfig: 35 53 88  --35是指定3和5级别启动、53是启动的顺序、88是关闭的顺序
-# description: is anuo  --可以随便说点啥， 最好的说明这个脚本的用途啥的。
+# chkconfig: 35 53 88    --35是指定3和5级别启动、53是启动的顺序、88是关闭的顺序
+# description: is anuo   --可以随便说点啥， 最好的说明这个脚本的用途啥的。
 echo Anuo Come on  --脚本的内容
 ```
 
 ```shell
-[root@anuo ~]# mv anuo.sh /etc/init.d/  --必须将脚本放到/etc/init.d/目录下
-[root@anuo ~]# chmod +x /etc/init.d/anuo.sh  --别忘记给脚本加执行权限
-[root@anuo ~]# chkconfig --add anuo.sh  --添加开机自启动
-[root@anuo ~]# chkconfig --list | grep anuo.sh  --可以看到开启级别的启动
+[root@anuo ~]# mv anuo.sh /etc/init.d/    --必须将脚本放到/etc/init.d/目录下
+[root@anuo ~]# chmod +x /etc/init.d/anuo.sh    --别忘记给脚本加执行权限
+[root@anuo ~]# chkconfig --add anuo.sh    --添加开机自启动
+[root@anuo ~]# chkconfig --list | grep anuo.sh    --可以看到开启级别的启动
 ```
 
 ```
@@ -37,11 +37,11 @@ anuo.sh   0:关闭    1:关闭    2:关闭    3:启用    4:关闭    5:启用  
 ##### 小测试
 
 ```shell
-[root@anuo ~]# ll /etc/rc.d/rc3.d/|grep anuo.sh
+[root@anuo ~]# ll /etc/rc.d/rc3.d/ | grep anuo.sh
 lrwxrwxrwx  1 root root 17 5月  12 19:10 S53anuo.sh -> ../init.d/anuo.sh
 ```
 
-查看到3级别启动的文件里一个S53anuo.sh的链接文件
+查看到3级别启动的文件里一个`S53anuo.sh`的链接文件
 
 （S表示开启，53也就对应了配置文件里的53的启动的顺序）
 
@@ -50,14 +50,14 @@ lrwxrwxrwx  1 root root 17 5月  12 19:10 S53anuo.sh -> ../init.d/anuo.sh
 
 
 ```shell
-[root@anuo ~]# chkconfig anuo.sh off --设置开机不启动
-[root@anuo ~]# ll /etc/rc.d/rc3.d/|grep anuo.sh     
+[root@anuo ~]# chkconfig anuo.sh off   --设置开机不启动
+[root@anuo ~]# ll /etc/rc.d/rc3.d/ | grep anuo.sh     
 lrwxrwxrwx  1 root root 17 5月  12 19:30 K88anuo.sh -> ../init.d/anuo.sh
 ```
 
-再次查看发现S53anuo.sh的链接文件没有了，却多了个K88anuo.sh的链接文件
+再次查看发现`S53anuo.sh`的链接文件没有了，却多了个`K88anuo.sh`的链接文件
 
-（K表示不开启 88对应的是配置文件里的88关闭的顺序）
+（`K`表示不开启，`88`对应的是配置文件里的`88`关闭的顺序）
 
 <br/>
 

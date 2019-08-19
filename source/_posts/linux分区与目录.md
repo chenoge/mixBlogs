@@ -6,11 +6,7 @@ tags: [linux]
 
 #### 分区和目录
 
-Windows的文件结构是多个并列的树状结构，最顶部的是不同的磁盘（分区）。
-
-Linux的文件结构是单个的树状结构。
-
-每次安装系统的时候我们都会进行分区，Linux下磁盘分区和目录的关系如下：
+Windows的文件结构是**多个并列的树状结构**，最顶部的是不同的磁盘（分区）。Linux的文件结构是**单个的树状结构**。每次安装系统的时候我们都会进行分区，Linux下磁盘分区和目录的关系如下：
 
 - 任何一个分区都必须挂载到某个目录上
 - 目录是逻辑上的区分，分区是物理上的区分
@@ -21,15 +17,13 @@ Linux的文件结构是单个的树状结构。
 
 <br/>
 
-
-
 ```shell
 [root@localhost ~]# df -lh
-Filesystem            容量    已用     可用      已用%     挂载点
-/dev/sda3             6.4G   4.8G    1.3G     80%        /
-/dev/sda1             99M    8.4M    86M      9%         /boot
-none                  494M   0       494M     0%         /dev/shm
-/dev/hdc              105M   105M    0        100%       /media/cdrom
+Filesystem       容量      已用      可用      已用%      挂载点
+/dev/sda3        6.4G     4.8G      1.3G     80%        /
+/dev/sda1        99M      8.4M      86M      9%         /boot
+none             494M     0         494M     0%         /dev/shm
+/dev/hdc         105M     105M      0        100%       /media/cdrom
 ```
 
 ①左边的信息代表了磁盘文件系统分区：`/dev/sda1, /dev/sda3`等
