@@ -46,6 +46,22 @@ tags: [sql,索引]
 
 
 
+注：
+
+- 不建议列上允许为空，最好限制`not null`，并设置一个默认值。
+  - 设置`0`和`''`空字符串等
+  - 如果是`datetime`类型，可以设置成`1970-01-01 00:00:00`这样的特殊值
+
+- 对MySQL来说，`null`是一个特殊的值，`Conceptually, NULL means “a missing unknown value” and it is treated somewhat differently from other values`。
+  - 不能使用`=,<,>`这样的运算符
+  - 对`null`做算术运算的结果都是`null` 
+  - `count`时不会包括`null`行
+  - `null`比空字符串需要更多的存储空间
+
+<br/>
+
+
+
 ##### 四、创建索引
 
 ```sql
