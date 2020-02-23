@@ -44,6 +44,8 @@ GET my_index/_search
 - 如果你在很短的时间内编译了太多独特的脚本，Elasticsearch将使用`circuit_breaking_exception`错误拒绝新的动态脚本
 - 默认情况下，每分钟将编译最多15个内联脚本
 
+<!--more-->
+
 
 
 #### 存储的脚本
@@ -115,6 +117,42 @@ POST es_stat_mth_chain_revenue_width/doc/_search
               "A": "room_count_sum",
               "B": "status_room_count_sum"
             }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```json
+POST es_stat_mth_chain_revenue_width/doc/_search
+{
+  "aggs": {
+    "cityLevel": {
+      "terms": {
+        "field": "age_tag.keyword"
+      },
+      "aggs": {
+        "room_count_sum": {
+          "sum": {
+            "field": "room_count"
+          }
+        },
+        "status_room_count_sum": {
+          "sum": {
+            "field": "status_room_count"
+          }
+        },
+        "occ": {
+          "scripted_metric": {
+            "init_script": "params._agg.a_list = []; params._agg.b_list =[]",
+              
+            "map_script": "params._agg.a_list.add(doc.status_room_count.value); params._agg.b_list.add(doc.room_count.value)",
+              
+            "combine_script": "double a = 0; double b = 0; for (i in params._agg.a_list) { a += i }  for (i in params._agg.b_list) { b += i } return [a, b]",
+              
+            "reduce_script": "double a = 0; double b = 0; for (i in params._aggs) { a += i[0] }   for (i in params._aggs) { b += i[1] } return a / b"
           }
         }
       }
